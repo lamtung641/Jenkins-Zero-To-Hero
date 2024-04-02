@@ -21,8 +21,8 @@ pipeline {
     }
     stage('Static Code Analysis') {
       steps {
-        withSonarQubeEnv((installationName: 'sonar-server') {
-          sh 'cd java-maven-sonar-argocd-helm-k8s/spring-boot-app && ./mvnw clear org.sonarsource.scanner.maven:sonar-maven-plugin:3.11.0.3922:sonar'
+        withSonarQubeEnv(installationName: 'sonar-server') {
+          sh 'cd java-maven-sonar-argocd-helm-k8s/spring-boot-app && mvn sonar:sonar'
         }
       }
     }
