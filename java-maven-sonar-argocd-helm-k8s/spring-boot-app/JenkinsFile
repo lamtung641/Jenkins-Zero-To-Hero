@@ -21,8 +21,9 @@ pipeline {
     }
     stage('Static Code Analysis') {
       steps {
-        withSonarQubeEnv(installationName: 'sonar-server') {
-          sh 'cd java-maven-sonar-argocd-helm-k8s/spring-boot-app && mvn sonar:sonar'
+        withSonarQubeEnv('sonar-server') {
+          sh ''' $SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=Netflix \
+                    -Dsonar.projectKey=Netflix '''
         }
       }
     }
